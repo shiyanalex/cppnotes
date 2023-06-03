@@ -2,6 +2,7 @@
 #include <vector>
 #include <map>
 // & functional programming
+// closure types - то что лямбда генерирует
 
 struct A {
 
