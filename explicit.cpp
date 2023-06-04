@@ -1,5 +1,6 @@
 #include <iostream>
 
+
 class Simple {
 public:
     Simple(int a) : a_(a) {}
@@ -14,25 +15,41 @@ private:
     int a_;
 };
 
-class Coordiantes {
-private: 
-    int longitude;
-    int latitude;
+
+class Car {
+private:
+    double longitude;
+    double latitude;
+
+    enum CarClass {
+        econom = 1, bussines, elite
+    };
 
 public:
-    Coordiantes(int x, int y) : longitude(x), latitude(y) {}
 
-    loc_check(Coordiantes&) {
-        return std::pair<longitude, latitude>;
+    Car(double x, double y, CarClass carclass);
+    
+    void moving () {
+        longitude++;
+        latitude++;
     }
-}
+        
+    std::pair<double, double> loc_check() {
+        return std::pair<double, double> (longitude, latitude);
+    }
+
+    std::string ClassCheck(CarClass one) {
+        std::string className[] = { "econom", "bussines", "elite"};
+        return className[one];
+    }
+};
 
 template <typename S>
 void someFunc(const S& s) {
 
 }
 
-int main(int, char**) {
+int main() {
     /*
     Simple s3 = 11;
     // SimpleExplicit se3 = 11; - COMPILE ERROR
@@ -44,8 +61,8 @@ int main(int, char**) {
 
     */
 
-    Coordiantes c (11, 5);
-    Coordiantes::loc_check(c);
+    Car mycar (11.2342, 5.2341, Car::CarClass::econom);
+    mycar.loc_check();
 
     return 0;
 }
