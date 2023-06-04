@@ -25,7 +25,7 @@ leaks.
 // explicit - все конструкторы от одного аргумента (широта долгота)
 // final - no inheritance
 // extern - some fuction from another file
-// union - структура
+// union - какая то структура 
 // mutable - в лямбде можно локальные данные изменять 
 
 struct A {
