@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-# something
 
 // препроцессинг (//, include, define) -> компиляция -> ассемблирование -> линковка (все файлы и библиотеки в один exe)
 // единица трансляции - cpp file
