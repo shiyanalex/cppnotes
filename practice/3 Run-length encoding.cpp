@@ -8,7 +8,8 @@ void RLE (std::string& a) {
 
     std::vector<PAIR> b;
     int pos = 1;
-    for (int i = 0; i < a.length(); i++) {
+    int len = a.length();
+    for (int i = 0; i < len; i++) {
         if (a[i] == a[i+1]) ++pos;
         else {
             b.emplace_back(std::make_pair(a[i], pos));

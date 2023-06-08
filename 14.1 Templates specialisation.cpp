@@ -16,7 +16,7 @@ struct S<int> {
 	}
 };
 
-// Partial specialisation	* & [] const, const&  
+// Partial specialisation  * & [] const, const&  
 template <typename T>
 struct S<T*> {
 	void f(){

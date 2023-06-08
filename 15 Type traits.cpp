@@ -9,7 +9,7 @@ struct is_same {
 
 };
 
-template <typename T>
+template <>
 struct is_same<T, T> {
 	static const bool value = true;
 };

@@ -35,6 +35,7 @@ void f(int x) {
         std::cout << "nice";
     }
 }
+
 int main() {
 
     std::vector<int> v{5,0,1,0,3,12};

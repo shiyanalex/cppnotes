@@ -42,19 +42,19 @@ int main() {
     std::vector v {1,5,3,2,4,6,0,8,9,3};
     A a;
     int mid = 5;
+
     /*
     std::sort(v.begin(), v.end(), [=, a = std::move(a)] (int x, int y) mutable {
         return std::abs(x - mid) < std::abs(y - mid);
-    }); */
-    
+        std::ignore = a;
+    }); 
+    */
 
-    auto f = [=] (int x, int y) {
+    auto f = [=, a = std::move(a)] (int x, int y) {
         return std::abs(x - mid) < std::abs(y - mid);
         std::ignore = a;
     };
-    
     std::sort(v.begin(), v.end(), f);
-    
 
     for (int x : v) std::cout << x;
 
