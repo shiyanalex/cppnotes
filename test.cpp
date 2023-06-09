@@ -39,7 +39,7 @@ struct A {
 
 int main() {
 
-    std::vector v {1,5,3,2,4,6,0,8,9,3};
+    std::vector v{1,5,3,2,4,6,0,8,9,3};
     A a;
     int mid = 5;
 

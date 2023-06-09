@@ -42,12 +42,11 @@ void for_string(std::string& s) {
 
 }
 
-
 int main() {
     std::string S ="abaasdffsdknbsewrgafhdflgkjjiskjdfc";
     for_string(S);
     std::cout << "\n";
-    for_files("output-onlinefiletools.txt");
+    //for_files("output-onlinefiletools.txt");
 
 }
 

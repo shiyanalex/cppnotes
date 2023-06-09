@@ -9,7 +9,7 @@ struct is_same {
 
 };
 
-template <>
+template <typename T>
 struct is_same<T, T> {
 	static const bool value = true;
 };
@@ -49,8 +49,7 @@ template<typename T>
 using remove_const_t = typename remove_const<T>::type;
 
 //since c++17 
-
-template<typename T>
+template<typename U, typename V>
 const bool is_same_v = is_same<U, V>::value;
 
 
@@ -61,7 +60,7 @@ void f(T x, U y) {
 	typename remove_const<U>::type a;
     //...
 
-	if (is_same<T, U>::value) {
+	if (is_same_v<T, U>) {
 
 	} else {
 
@@ -70,13 +69,18 @@ void f(T x, U y) {
 }
 
 template<typename T>
-class C {
+struct C {
     C() = delete;
 };
 
 int main() {
 
-    //C<typename std::decay<int*[5][5]>::type> x;
+    const char cc = 'c';
+    remove_const<decltype(cc)>::type a;
+    a = 'a';
+    std::cout << a << cc;
 
+    // decay - снимает все * и &
+    // C<typename std::decay<int*[5][5]>::type> x;
 
 }

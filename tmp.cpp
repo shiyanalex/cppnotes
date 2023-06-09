@@ -1,22 +1,11 @@
-#include <iostream>
+#include<iostream>
 
-template <typename T>
-T abs(T x) { return x > 0 ? x : -x; }
-
-template <typename T>
-T abs(T x, T y) { return x > 0 ? x : -x; }
-
-struct Complex {
-    int re;
-    int im;
-};
+template<int N, int M>
+constexpr int sum() {return N + M; }
 
 int main() {
 
-    std::cout << abs(-6) << "\n";
-    Complex c{2,4};
-
-    std::cout << c.re << c.im;
-    std::cout << abs(c);
-
+    std::cout << sum<2,5>();
+    int x = 1;
+    std::cout << sum<x,4>();
 }

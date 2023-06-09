@@ -1,6 +1,5 @@
 #include <iostream>
 
-
 class Simple {
 public:
     Simple(int a) : a_(a) {}

@@ -1,17 +1,11 @@
 #include <iostream>
-#include <ranges>
-
-namespace rng = std::ranges;
-namespace view = rng::views;
+#include <vector>
 
 int main() {
-    const int days = 3;   // количество дней с играми
-    const int games = 2;  // количество игр с питомцем в день
+    
+    std::vector v{1,2,4,2,6,2,74,25};
 
-    for (int i : view::iota(0, days)) {
-        std::cout << "День " << i << std::endl;
-        for (int j : view::iota(0, games)) {
-            std::cout << "  Игра " << j << std::endl;
-        }
+    for (std::size_t i = 0; auto& d : v) {
+        std::cout << i++ << ' ' << d << '\n';
     }
 }
