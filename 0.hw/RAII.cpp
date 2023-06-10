@@ -3,7 +3,8 @@
 // RAII idiom is actually very simple, it means that any resource allocation (acquisition) is done in object constructor
 // and deallocation respectively in destructor, in other words resource acquisition must succeed for initialization to succeed. 
 // This method guarantees that sources are held only while object is alive. Therefore, there are no object or resource leaks
-// некоторый ресурс захватывается в конструкторе объекта, и освобождается в его деструкторе. 
+// некоторый ресурс захватывается в конструкторе объекта, и освобождается в его деструкторе.
+
 class TelephoneLine {
 public: 
     void MakeLineBusy() {
