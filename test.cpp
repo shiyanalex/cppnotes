@@ -5,28 +5,21 @@
 // единица трансляции - cpp file
 // в хедере меняем что-то и все файлы где он включен будут пересобираться 
 
+// Найти реальный пример использования протектед наследования
+// Оптимизирует ли компилятор постфиксный инкремент у итераторов или он делает копию
 
-//Class template argument deduction (CTAD) - можно не указывать инт в векторе
-
-/* 
-RAII idiom is с very simple, it means that any resource allocation (acquisition) is done in object constructor and
-deallocation respectively in destructor, in other words resource acquisition must succeed for initialization to succeed.
-This method guarantees that sources are held only while object is alive. Therefore, there are no object or resource
-leaks.
-*/
-
-// не используем сишный поинтер
-// нужный пример протектед наследования
+// Class template argument deduction (CTAD) - можно не указывать инт в векторе
+// Dont use C-style pointer
 // #define - макросы
 // enum - набор именнованных констант (эконом, комфорт, бизнес)
 // noexcept - no exeptions
 // constexpr - compile time if
 // decltype - compile time type
 // explicit - все конструкторы от одного аргумента (широта долгота)
-// final - no inheritance
+// final - restrict inheritance
 // extern - some fuction from another file
-// union - какая то структура 
-// mutable - в лямбде можно локальные данные изменять 
+// union - 
+// mutable - позволяет изменять локальные данные в лямбде / даже если объект константный поле изменяемо (кэширование)
 
 struct A {
     int x = 0;

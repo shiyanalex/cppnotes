@@ -91,7 +91,7 @@ public:
 		return *this;
 	}
 
-    size_t size() {
+    size_t size() const {
         return sz;
     }
 

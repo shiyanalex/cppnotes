@@ -29,13 +29,48 @@ int main() {
 
 }
 
-// Singleton - единственный экземпляр некоторого класса
+// Singleton - в любой момент времени существует только один объект класса (подключение к бд)
+
+struct Singleton {
+private:
+    Singleton () {};
+    Singleton (const Singleton&) = delete;
+
+public:
+
+    static Singleton* ptr;
+
+    static Singleton& getInstance() {
+        if (!ptr) ptr = new Singleton();
+        return *ptr;
+    }
+};
+
+Singleton* Singleton::ptr = nullptr;
+
+int main() {
+    Singleton& s = Singleton::getInstance();
+}
+
+// Оператор приведения типа
+struct UserID {
+    int id = 0;
+
+    explicit UserID(int id): id(id) {}
+
+    operator int() const {
+        return id;
+    }
+};
+
+    uid + 5;
+    5 + uid;
 
 // explicit - запрещает неявное вызов оператора Применяется к конструктору / оператору привдения типов. 
 // explicit широта / explicit долгота и 
 // String s; s + 'a'; если нет конструктора строки от чара, а преобразуется в 97 и получится строка + 97 нулей
 // Пиши explicit когда конструктор от одного аргумента 
-// big integer int bool  помечаем expliit и  
+// big integer int bool помечаем explicit и  
 
 class C {
 	static C* obj;	// можно инициализировать статическое поле внутри класса только 
