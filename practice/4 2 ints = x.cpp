@@ -10,7 +10,6 @@ void f (std::vector<int>& vec) {
                 return;
             }
         }
-    
     }
 }
 
@@ -18,7 +17,7 @@ template <typename T>
 int max(T data) {
     int max = 0;
     for (auto& x: data) {
-        if (x >max) {
+        if (x > max) {
             max = x;
         }
     }

@@ -18,7 +18,6 @@
 // explicit - все конструкторы от одного аргумента (широта долгота)
 // final - restrict inheritance
 // extern - some fuction from another file
-// union - 
 // mutable - позволяет изменять локальные данные в лямбде / даже если объект константный поле изменяемо (кэширование)
 
 struct A {
