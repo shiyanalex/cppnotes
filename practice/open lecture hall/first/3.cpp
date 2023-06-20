@@ -2,7 +2,7 @@
 #include <vector>
 
 // Купить и продать
-// WA on 5th test
+// WA on test 5
 
 int main() {
 
