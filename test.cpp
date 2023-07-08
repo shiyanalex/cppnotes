@@ -21,7 +21,7 @@
 // mutable - позволяет изменять локальные данные в лямбде / даже если объект константный поле изменяемо (кэширование)
 
 struct A {
-    int x = 0;
+    int x = 3;
     A() {};
 
     A(const A&) { std::cout << "A copy\n"; }
@@ -31,24 +31,39 @@ struct A {
 
 int main() {
 
-    std::vector v{1,5,3,2,4,6,0,8,9,3};
+    std::vector v {2,5,4,8,5,7,1,3};
     A a;
-    int mid = 5;
-
+    
+    int mid = 4;
+    
     /*
     std::sort(v.begin(), v.end(), [=, a = std::move(a)] (int x, int y) mutable {
         return std::abs(x - mid) < std::abs(y - mid);
         std::ignore = a;
     }); 
     */
-
-    auto f = [=, a = std::move(a)] (int x, int y) {
+    
+    auto f = [&mid, a](int x, int y) mutable {
+        //int mid = 5;
+        ++mid;
+        std::cout << "in lambda " << mid << "\n"; 
         return std::abs(x - mid) < std::abs(y - mid);
-        std::ignore = a;
+        //std::ignore = a;
     };
-    std::sort(v.begin(), v.end(), f);
 
-    for (int x : v) std::cout << x;
+    f(1, 2);
+
+    std::cout << mid << "\n";
+
+    f(1, 2);
+    std::cout << mid << "\n";
+
+    
+    for (int x: v) std::cout << x;
+
+    //std::sort(v.begin(), v.end(), f);
+    
+
 
 }
 
