@@ -10,11 +10,11 @@ int f(std::vector<int>& mi) {
     std::sort(mi.begin(), mi.end());
 
     int mini = INT_MAX;
+
     for (int i = 0; i < mi.size() - 1; i++){
         int diff = mi[i+1] - mi[i];
-        if (diff < mini) mini = diff;
 
-        //mini = std::min(diff, mini);
+        if (diff < mini) mini = diff;
     }
 
     int last = (mi[0] + 1440) - mi[mi.size() - 1];
