@@ -49,8 +49,6 @@ int main() {
         }
     }
 
-
-
     int imin = 0;
     int b1 = 0;
     int s1 = 0;
