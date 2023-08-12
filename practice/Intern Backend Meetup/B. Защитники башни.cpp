@@ -2,6 +2,8 @@
 #include <vector>
 #include <algorithm>
 
+// https://contest.yandex.ru/contest/47727/problems/
+
 void record(std::vector<long long>& vec, int x) {
     long long t = 0;
     for (int i = 0; i < x; ++i) {

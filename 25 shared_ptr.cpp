@@ -72,6 +72,8 @@ public:
 
 template<typename T, typename... Args>
 shared_ptr<T> make_shared(Args&&... args) {
+    //void* p = ::operator new(sizeof(T) + sizeof(size_t)); не учтено выравнивание alignment?
+    //new (p) T(std::forward<Args>(args)...);
     auto cb = new typename shared_ptr<T>::ControlBlock(T(std::forward<Args>(args)..., 1));
     return shared_ptr<T>(cb);
 }
