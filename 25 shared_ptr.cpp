@@ -1,5 +1,7 @@
 #include <iostream>
 
+// shared ptr - как юник только еще и копировать можно, указатель со счетчиком ссылок
+
 // Type erasure
 template<typename T>
 class enable_shared_from_this {
@@ -18,7 +20,8 @@ public:
 };
 
 template<typename T>
-class shared_ptr { 
+class shared_ptr {
+    
     struct BaseControlBlock {
         int* shared_count;
         int* weak_count;
@@ -85,18 +88,21 @@ shared_ptr<T> allocate_shared(const Alloc& alloc, Args&&... args) {
 }
 
 
-// в случае циклических ссылок sharedptr и остальные не смогут помочь, тк будут неунечтоженные объекты
-// weak pointer не влияет на то будедт ли уничтожен объект, с помощью него можно посмотреть жив ли он еще и получить на
+// weak_ptr решает проблемму циклических ссылок (дерево родитель ребенок и указатель на дерево уже потеряли и оно должно уничтожиться)
+// weak pointer не влияет на то будет ли уничтожен объект, с помощью него можно посмотреть жив ли он еще и получить на
 // него shared
+// смотрит на объект, проверяет жив ли он и с помощью него можно создать shared_ptr
 // нельзя получить weak если нету shared 
 
 template<typename T>
 class weak_ptr() {
 
 public: 
-    weak_ptr(const shared_ptr<T>& other)
-    bool expired() cosnt noexcept;
-    shared_ptr<T> lock() const noexcept;
+    weak_ptr(const shared_ptr<T>& other);
+    bool expired() cosnt noexcept {
+        ///???
+    };// проверка уничтожен ли объект или нет
+    shared_ptr<T> lock() const noexcept; // позволяет получить shared_ptr
     // что он хранит и как он проверят уничтожен ли объект
     ~weak_ptr();
 };

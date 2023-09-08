@@ -9,7 +9,7 @@ struct default_delete {
 };
 
 template<typename T, typename Deleter = std::default_delete<T>>
-class unique_ptr {
+class unique_ptr: private Deleter { // empty base optimization
     T* ptr;
 
 public:
@@ -42,8 +42,9 @@ unique_ptr<T> make_unique(Args&&... args) {
 int main() {
 
     auto p = std::unique_ptr<int>(new int(5));
-    
-    std::cout << sizeof(p);
-    
+
+    unique_ptr<int> p2 = make_unique<int>(42);
+
+    std::cout << sizeof(p) << "\n" << sizeof(p2);
 
 }

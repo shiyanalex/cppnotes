@@ -6,29 +6,27 @@
 // :-(((....
 // :-()
 
-void f (std::string s) {
+void f (std::string& s) {
 
     std::string s2 = "";
 
     for (int i = 0; i < s.size();) {
         if (s[i] == ':' && s[i+1] == '-') {
-
-            if (i+2 < s.size() && s[i+2] == ')') {
-                while (i+2 < s.size() && s[i+2] == ')') {
+            i+=2;
+            if (i < s.size() && s[i+1] == ')') {
+                while (i < s.size() && s[i] == ')') {
                     ++i;
                 }
             } 
-            else if (i+2 < s.size() && s[i+2] == '(')  {
-                while (i+2 < s.size() && s[i+2] == '(') {
+            else if (i < s.size() && s[i+1] == '(')  {
+                while (i < s.size() && s[i] == '(') {
                     ++i;
                 }
             }
-            i+=2;
         } else {
             s2.push_back(s[i]);
             ++i;
         }
-
     }
     std::cout << s2; 
 }

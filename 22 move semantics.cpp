@@ -35,7 +35,7 @@ move_if_noexcept(T& x) noexcept {
 
 // std::remove_reference_t
 
-// std::forward - почему нельзя (T&& x)? шаблонные аргументы
+// perfect forwarding and std::forward - почему нельзя (T&& x)? шаблонные аргументы
 template<typename T>
 T&& forward(std::remove_reference_t<T>& x) noexcept {
     return static_cast<T&&> x;

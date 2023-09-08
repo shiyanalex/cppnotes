@@ -17,7 +17,7 @@ void RLE (std::string& a) {
         }
     }
     
-    for(int i = 0; i < b.size(); i++) {
+    for (int i = 0; i < b.size(); i++) {
         std::cout << b[i].first << b[i].second;
     }
 }

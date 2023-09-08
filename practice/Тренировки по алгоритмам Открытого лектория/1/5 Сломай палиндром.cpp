@@ -1,22 +1,20 @@
 #include <iostream>
 #include <vector>
 
-// Break a Palindrome
-// WA on test 8
-
 int main() {
 
     std::string s;
-    std::cin >> s;
+    getline (std::cin, s);
     int l = s.size();
     
     if (l < 2) {
-        return 0;
+        std::cout << "";
     }
 
     bool flag = false;
+    int mid = s.length() / 2;
 
-    for (int i = 0; i < l; ++i) {
+    for (int i = 0; i < mid; ++i) {
         if ((int)s[i] > 97) {
             s[i] = 'a';
             flag = true;
