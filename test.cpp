@@ -26,11 +26,7 @@
 
 int main() {
 
-    std::vector<int> vec {2,5,4,8,5,7,1,3,9,15};
-    std::string s = "something";
-    std::map<int> st {4,5,2,8,12};
-
-    std::cout << s.find('m');
-    std::cout << st.find(8);
-    //std::cout << vec.find(1);
+    int n = 5;
+    std::vector<int> vec (5, 2);
+    for (auto& x: vec) std::cout << x << " ";
 }

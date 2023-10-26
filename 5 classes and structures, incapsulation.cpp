@@ -45,8 +45,6 @@ int main (){
 	C cc;
 	cc.add_and_print(1);
 
-
-
 }
 
 

@@ -1,10 +1,13 @@
 #include <iostream>
 #include <unordered_set>
+#include <unordered_map>
 #include <vector>
 #include <sstream>
 
-std::unordered_set<std::string> setter(std::string s) {
-    std::unordered_set<std::string> res;
+// надо использовать бор / префиксное дерево
+
+std::unordered_map<std::string> setter(std::string s) {
+    std::unordered_map<std::string> res;
 
     std::string temp;
     std::stringstream dic(s);

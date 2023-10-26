@@ -30,9 +30,7 @@ void prefix(std::vector<int>& v) {
 
 void prefix1(std::vector<int>& v) { 
 
-    std::vector<int> sol;
-    sol.reserve(v.size());
-    sol.push_back(0);
+    std::vector<int> sol(v.size(), 0);
 
     for (auto it = v.begin() + 1; it != v.end(); ++it) {
         int same = 0;

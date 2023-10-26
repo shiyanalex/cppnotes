@@ -16,7 +16,6 @@ int main() {
     }
 
     // тут я искал наибольшую разницу в цене, видимо это неверно
-
     /*
     int max = 0;
     int x = 0;
@@ -32,6 +31,7 @@ int main() {
             }
         }
     }
+    std::cout << x << " " << y;
     */
 
     int bday = 0;
@@ -47,10 +47,10 @@ int main() {
             mincostday = i;
         }
     }
-    
     if (bday == 0 && sday == 0) {
         std::cout << 0 << " " << 0;
     } else {
         std::cout << bday + 1 << " " << sday + 1; 
     }
 }
+

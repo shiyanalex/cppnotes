@@ -8,11 +8,13 @@ template<typename T>
 struct Allocator {
 
     T* allocate(size_t n) {
-        return reinterpret_cast<T*>(new char[n * sizeof(T)]);
+        //return reinterpret_cast<T*>(new char[n * sizeof(T)]);
+        return ::operator new(n * sizeof(T));
     }
     
     void deallocate(T* ptr, size_t n) {
-        delete[] reinterpret_cast<char*>(ptr);
+        //delete[] reinterpret_cast<char*>(ptr);
+        ::operator delete(ptr);
     }
     
     template<typename... Args>
@@ -71,6 +73,15 @@ public:
 // в зависимости от аллокатора, vector при копировании себя либо копировал аллокатор либо создавал новый (новый пул)
 
 // аллокаторы равны если то что выделено одним, можно освободить другим
+
+template<typename T, typename U = int(T::*)>
+auto hmc_helper(int);
+
+template<typename T>
+false_type hmc_helper(...);
+
+template<typename T, template... Args>
+struct has_method_construct: decltype(hmc_helper<T, Args...>(0)) {};
 
 // Allocator Traits
 template<typename Alloc>

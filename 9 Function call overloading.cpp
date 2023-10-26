@@ -20,7 +20,6 @@ struct MyCompare {
 	bool operator()(int x, int y) const noexcept {
 		return abs(x) < abs(y);
 	}
-
 };
 
 int main(){

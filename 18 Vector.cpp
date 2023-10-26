@@ -7,6 +7,7 @@ class Vector {
     size_t sz;
     size_t cap;
     [[no_unique_adress]] Allocator alloc;   //c++20
+    
     using AllocTraits = std::allocator_traits<Allocator>;
 
 public:
@@ -25,6 +26,50 @@ public:
             throw;
         }
     } 
+    Vector(size_t count, const T& value = T(), const Alloc& alloc = Alloc());
+
+    // без отн искл
+    Vector(T, Alloc)operator=(const Vector<T, Alloc>& other) {
+        if (this == &other) return *this;
+
+        other.T* newvec(other.sz, other.alloc);
+
+        auto tmp = alloc;
+        try {
+            if (alloc != other.alloc && AllocTraits::propagate_on_container_copy_assignment::value)
+                alloc = other.alloc; // тоже може быть исключение
+        } catch (...) {
+            alloc = tmp;
+            throw;
+        }
+ 
+        size_t i = 0;
+        try {
+            for (; i < other.sz; ++i) {
+                newvec.push_back(arr[i]);
+            }
+        } catch (...) {
+            for (size_t j = 0; j < i; ++j) {
+                AllocTraits::destroy(alloc, newvec + j);
+            }
+            AllocTraits::deallocate(newvec);
+            alloc = tmp;
+            throw;
+        }
+
+        // теперь можно спокойно освобождать память
+        for (size_t i = 0; i < sz; ++i) {
+            pop_back();
+        }
+        AllocTraits::deallocate(arr, cap);
+
+        arr = newvec;
+        sz = other.sz;
+        cap = other.cap;
+        
+        return *this;
+    }
+
 
     T& operator[](size_t i) {
         return arr[i];
@@ -56,6 +101,7 @@ public:
     
     //если заранее знаешь что будет не больше x числа эл, то проще сделать резерв 
     //вначале, чтобы потом не было реаллокации из за push_back
+    // allocate -> construct -> destroy -> deallocate
     void reserve(size_t newcap) {
         if (newcap <= cap) return;
         
@@ -68,7 +114,8 @@ public:
         try {
             std::uninitialized_copy(arr, arr + sz, newarr);
         } catch (...) {
-            alloc.deallocate(newarr, newcap);
+            //delete[] reinterpret_cast<int8_t*>(newarr);
+            //alloc.deallocate(newarr, newcap);
             throw;
         } */
         
@@ -88,9 +135,10 @@ public:
                 AllocTraits::destroy(alloc, newarr + j);
             }
             //delete[] reinterpret_cast<uint8_t*>(newarr);i
-            alloc.deallocate(newarr, newcap);
+            //alloc.deallocate(newarr, newcap);
+            AllocTraits::deallocate(newarr);
             throw;
-        } 
+        }
         
         for (size_t i = 0; i < sz; ++i) {
             //(arr + i)->~T();
@@ -138,7 +186,8 @@ public:
     }
 
     void pop_back() {
-        (arr + sz - 1)->~T();
+        //(arr + sz - 1)->~T();
+        AllocTraits::destroy(alloc, arr + sz - 1);
         --sz;
     }
 
