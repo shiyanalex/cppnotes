@@ -6,7 +6,6 @@ using namespace std::chrono;
 
 int fiblen (int n, int& len) {
     len += 1;
-
     if (n == 0 || n == 1) {
         std::cout << len-- << " ";
         return 1;
@@ -17,7 +16,6 @@ int fiblen (int n, int& len) {
         return ans;
     }
 }
-
 
 int fib1 (int n) {
     if (n <= 1) {
@@ -44,7 +42,7 @@ int main() {
     std::cout << " time1 : " << duration.count() << "ms" << std::endl;
 
     auto start2 = high_resolution_clock::now();
-    std::vector<int> dp(x+1, 0);
+    std::vector<int> dp(x+1, 0); // why x+1?
     dp[0] = dp[1] = 1;
     std::cout << fib2(x, dp);
     auto stop2 = high_resolution_clock::now();
