@@ -11,24 +11,20 @@ void merge1(std::vector<int>& v, std::vector<int>& vv, std::vector<int>& m) {
 
 template <typename T>
 std::vector<T> merge2(std::vector<T>& v1, std::vector<T>& v2) {
-    std::vector<T> res(v1.size() + v2.size(), 0);
+    std::vector<T> res(v1.size() + v2.size());
 
+    v1.push_back(INT_MAX);
+    v2.push_back(INT_MAX);
     auto it1 = v1.begin();
     auto it2 = v2.begin();
 
     for (auto x = res.begin(); x != res.end(); ++x) {
-        if (*it1 < *it2) {
-            *x = *it1;
-            ++it1;
-        } else if (*it1 > *it2) {
+        if (*it1 > *it2) {
             *x = *it2;
             ++it2;
         } else {
             *x = *it1;
-            ++x;
-            *x = *it1;
             ++it1;
-            ++it2;
         }
     }
     return res;
@@ -37,7 +33,7 @@ std::vector<T> merge2(std::vector<T>& v1, std::vector<T>& v2) {
 int main() {
 
     std::vector<int> v1{1,2,5,9};
-    std::vector<int> v2{3,4,5,6,8,9};
+    std::vector<int> v2{3,4,5,6,8,9,10};
     
     std::vector<int> res;
     std::vector<int> res2;

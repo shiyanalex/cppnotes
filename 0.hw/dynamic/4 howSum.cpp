@@ -2,59 +2,52 @@
 #include <vector>
 #include <map>
 
-int i = 1;
-int j = 1;
-std::vector<int> ans;
-
-bool howSum2(int target, const std::vector<int>& nums, std::map<int, bool>& dp) {
-    ans.clear();
+bool howSum(int target, const std::vector<int>& nums, std::vector<int>& ans) {
     if (target == 0) return true;
     if (target < 0) return false;
-    
+
+    for (auto& x: nums) {
+        int remainder = target - x;
+        if (howSum(remainder, nums, ans) == true) {
+            ans.emplace_back(x);
+            return true;
+        }
+    }
+    return false;
+}
+
+void call(int a, std::vector<int> vec) {
+    std::vector<int> ans;
+    if (howSum(a, vec, ans)) for (auto x: ans) std::cout << x << " ";
+    else std::cout << "-";
+    std::cout << "\n";
+}
+
+bool howSum2(int target, const std::vector<int>& nums, std::vector<int>& ans, std::map<int, bool>& dp) {
+    if (target == 0) return true;
+    if (target < 0) {
+        dp[target] = false;
+        return false;
+    }
     if (dp.find(target) != dp.end()) return dp[target];
 
     for (auto& x: nums) {
         int remainder = target - x;
-        if (howSum2(remainder, nums, dp) == true) {
-            dp.emplace(remainder, true);
-            ans.push_back(x);
+        if (howSum2(remainder, nums, ans, dp) == true) {
+            ans.emplace_back(x);
             return true;
         }
     }
-    dp.emplace(target, false);
+    dp[target] = false;
     return false;
 }
 
-bool howSum(int target, const std::vector<int>& nums) {
-    ans.clear();
-    if (target == 0) return true;
-    if (target < 0) return false;
-
-    for (auto& x: nums) {
-        int remainder = target - x;
-        if (howSum(remainder, nums) == true) {
-            ans.push_back(x);
-            return true;
-        }
-    }
-    return false;   // not possible
-}
-
-void call(int a, std::vector<int> v1) {
-    howSum(a, v1);
-    std::cout << i << "| ";
-    for (auto& x: ans) std::cout << x << " ";
-    std::cout << "\n";
-    ++i;
-}
-
-void call2(int a, std::vector<int> v1) {
+void call2(int a, std::vector<int> vec) {
+    std::vector<int> ans;
     std::map<int, bool> dp;
-    howSum2(a, v1, dp);
-    std::cout << j << "| ";
-    for (auto& x: ans) std::cout << x << " ";
+    if (howSum2(a, vec, ans, dp)) for (auto x: ans) std::cout << x << " ";
+    else std::cout << "-";
     std::cout << "\n";
-    ++j;
 }
 
 int main() {

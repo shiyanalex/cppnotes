@@ -11,7 +11,6 @@ public:
                 nums.erase(it);
                 nums.push_back(0);
             }
-        
         }
         for (auto x : nums) std::cout << x << ",";
     }
