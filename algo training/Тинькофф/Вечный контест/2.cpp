@@ -1,17 +1,17 @@
 #include <iostream>
 
 int main() {
-
-    long n;
+    int n;
     std::cin >> n;
 
+    // 2^e >= n
     int e = 0;
-    int p = 1;
-
+    long p = 1;
     while (p < n) {
-        e += 1;
+        e++;
         p *= 2;
     }
     std::cout << e;
-
 }
+
+
