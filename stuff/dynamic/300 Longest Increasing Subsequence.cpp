@@ -3,7 +3,7 @@
 #include <algorithm> // for max_element
 
 // O(n^2) just length
-int lengthOfLIS(std::vector<int>& vec) {
+int lis_lenght(std::vector<int>& vec) {
     int n = vec.size();
     std::vector<int> dp(n, 1);
     

@@ -28,7 +28,7 @@ int main() {
     while (l < r) {
         long m = (l+r+1)/2;
 
-        if (good(m, n, k, vec)) l = m;
+        if (good(m, n, vec)) l = m;
         else r = m-1;
     }
 

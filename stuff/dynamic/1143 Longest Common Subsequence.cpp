@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-int lengthOfLCS(std::string v1, std::string& v2) {
+int lcs_lenght(std::string v1, std::string& v2) {
     int n = v1.size();
     int m = v2.size();
     int dp[n+1][m+1];

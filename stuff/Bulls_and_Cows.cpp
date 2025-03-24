@@ -11,7 +11,7 @@ void start() {
         if (std::find(random1.begin(), random1.end(), r) == random1.end()) {
             random1.push_back(r);
         }
-    }    
+    }
 
     //its for debug 
     /*

@@ -18,5 +18,5 @@ int coinChange(int need, std::vector<int> vec) {
 
 int main() {
     std::vector<int> vec{1,2,5};
-    std::cout << coinCombinations(11, vec);
+    std::cout << coinChange(11, vec);
 }

@@ -6,7 +6,7 @@
 // Rehash - very expensive operation (and complicated to do with exeption safety)
 // 
 template <typename Key, typename Value, typename Hash = std::hash<Key>>
-    typename Equal = std::equal_to<Key>>;
+    typename Equal = std::equal_to<Key>;
 
 class unordered_map {
     
@@ -27,6 +27,4 @@ public:
 
 int main() {
 
-
-
-
+}

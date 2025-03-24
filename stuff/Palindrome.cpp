@@ -1,27 +1,22 @@
 #include <iostream>
-#include <algorithm>
+using namespace std;
 
-std::string isPal(std::string S) {
-    for (auto & c : S) {
-        c = tolower(c);
-        std::erase(S, ' ');
-    } 
-    std::cout << S << "\n";
-    std::string P = S;
-    std::reverse(P.begin(), P.end());
-
-    if (S == P) {
-        return "Yes";
-    } else {
-        return "No";
+bool isPalindrome(string s) {
+    int left = 0, right = s.size() - 1;
+    
+    while (left < right) {
+        if (!isalnum(s[left])) { left++; continue; }  // Пропускаем не буквы/цифры
+        if (!isalnum(s[right])) { right--; continue; }
+        
+        if (tolower(s[left]) != tolower(s[right])) return false;
+        left++, right--;
     }
+    
+    return true;
 }
 
 int main() {
-    std::string str = "ape ePa";
-    /*
-    std::string str;    
-    getline (std::cin, str);
-    */
-    std::cout << isPal(str);
+    string s = "A man, a plan, a canal: Panama";
+    cout << isPalindrome(s);
+
 }

@@ -27,7 +27,7 @@ std::vector<int> twoSum1(std::vector<int>& nums, int target) {
 }
 
 // O(n)
-std::vector<int> twoSum1(std::vector<int>& nums, int target) {
+std::vector<int> twoSum2(std::vector<int>& nums, int target) {
     int n = nums.size();
     std::unordered_map<int, int> mapper;
 
