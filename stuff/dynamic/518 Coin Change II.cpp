@@ -10,9 +10,9 @@ int coinCombinations(int need, vector<int> vec) {
         for (int i = 1; i <= need; ++i) {
             if (i - x >= 0) dp[i] += dp[i-x];
         }
-        //for (auto x: dp) cout << x << " ";
-        //cout << "\n";
     }
+    for (auto x: dp) cout << x << " ";
+    cout << "\n";
     return dp[need];
 }
 

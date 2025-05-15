@@ -31,7 +31,6 @@ int main(){
 		int b = 2;
 		swap(a,b);
 		std::cout<< a << b << std::endl;
-
 	}
 
 	====================================

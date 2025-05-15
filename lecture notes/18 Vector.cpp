@@ -73,7 +73,7 @@ public:
 
     T& operator[](size_t i) {
         return arr[i];
-    } 
+    }
 
     T& at(size_t i) {
         if (i >= sz) throw std::out_of_range("out of range");
@@ -122,8 +122,8 @@ public:
         size_t i = 0; // выносим из цикла чтобы была безопастность отностительно искл (можно поменять местами)
         try {
             for (; i < sz; ++i) {
-                //newarr[i] = arr[i] - WRONG
-                //new (newarr + i) T(arr[i])        // конструктор копирования может кинуть исключение
+                //newarr[i] = arr[i]                // UB!! newarr dosnt have T in it, its raw bytes
+                //new (newarr + i) T(arr[i])        // Placement new, но конструктор копирования может кинуть исключение
                 //alloc.construct(arr + i, arr[i]);
                 //AllocTraits::construct(alloc, newarr + i, arr[i]);
                 AllocTraits::construct(alloc, newarr + i, std::move_if_noexcept(arr[i]));
@@ -134,7 +134,7 @@ public:
                 //alloc.destroy(newarr + j);
                 AllocTraits::destroy(alloc, newarr + j);
             }
-            //delete[] reinterpret_cast<uint8_t*>(newarr);i
+            //delete[] reinterpret_cast<uint8_t*>(newarr);
             //alloc.deallocate(newarr, newcap);
             AllocTraits::deallocate(newarr);
             throw;
